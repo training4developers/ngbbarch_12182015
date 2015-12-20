@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				Message: {{message | myUpperCase}}<br>
+				<input ng-model="message">
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+				.filter("myUpperCase", function() {
+
+					return function(value) {
+						console.log("uppercase filter executed");
+						return String(value).toUpperCase();
+					};
+
+				})
+				.controller("MyCtrl", function($scope) {
+					$scope.message = "Hi Class!!!";
+				});
+
+		</script>
+
+
+	</body>
+
+</html>

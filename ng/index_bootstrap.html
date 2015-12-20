@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				{{message}}
+			</div>
+		</div>
+
+		<!-- <div id="myApp2">
+			<div ng-controller="MyCtrl">
+				{{message}}
+			</div>
+		</div> -->
+
+		<script>
+
+			var counter = 0;
+
+			angular.module("MyApp", [])
+				.controller("MyCtrl", function($scope) {
+					$scope.message = "Angular App: " + (counter++);
+				});
+
+			//angular.bootstrap(document.getElementById("myApp1"), ["MyApp"]);
+
+			//angular.bootstrap(document.getElementById("myApp2"), ["MyApp"]);
+
+			// document.addEventListener("DOMContentLoaded", function() {
+			//
+			// 	// do other processing before Angular starts up
+			//
+			// 	angular.bootstrap(document.getElementById("myApp1"), ["MyApp"]);
+			//
+			// 	// var rootElement = document.querySelector("[my-app]");
+			// 	// angular.bootstrap(rootElement, [ rootElement.getAttribute("my-app") ] );
+			// });
+
+		</script>
+
+
+	</body>
+
+</html>

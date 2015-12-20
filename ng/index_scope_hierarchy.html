@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+		<style>
+		.ng-scope {
+			border: 2px solid red;
+			margin:5px;
+			padding:5px;
+		}
+		</style>
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			RootScope ID: {{$id}}
+			<div ng-controller="MyCtrl">
+				Scope ID: {{$id}}<br>
+				Message: {{message}}<br>
+				<button ng-click="doSomething()">Do Something</button>
+			</div>
+			<div ng-controller="MyCtrl">
+				Scope ID: {{$id}}<br>
+				Message: {{message}}<br>
+				<button ng-click="doSomething()">Do Something</button>
+			</div>
+			<div ng-controller="MyCtrl">
+				Scope ID: {{$id}}<br>
+				Message: {{message}}<br>
+				<button ng-click="doSomething()">Do Something</button>
+			</div>
+		</div>
+
+		<script>
+
+			var counter = 0;
+
+			angular.module("MyApp", [])
+				.controller("MyCtrl", function($scope) {
+					$scope.message = "Hi Angular App! " + counter++;
+
+					$scope.doSomething = function() {
+						console.log("did it!");
+					}
+				}).run(function($rootScope) {
+					console.dir($rootScope);
+				});
+
+		</script>
+
+
+	</body>
+
+</html>

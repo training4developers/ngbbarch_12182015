@@ -1,0 +1,26 @@
+<script>
+
+"use strict";
+
+function outer() {
+
+	var t = 3;
+
+	return function inner() {
+		console.log(t);
+	}
+
+	//inner();
+	// setTimeout(function() {
+	// 	t = 5;
+	// }, 2000);
+	// setTimeout(function() {
+	// 	inner();
+	// }, 3000);
+	//console.dir(inner);
+}
+
+var fn = outer();
+fn();
+
+</script>

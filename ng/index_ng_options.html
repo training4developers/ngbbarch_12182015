@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Backbone.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js"></script>
+	</head>
+
+	<body>
+
+		<select ng-model="editPerson.state" ng-options="state.k as state.v for state in states">
+			<option value="VA">Virginia</option>
+		</select>
+
+		<ul>
+			<li ng-repeat="item in items">{{item}}</li>
+		<ul>
+
+
+		<script>
+
+			var ItemView = Backbone.View.extend({
+				tagName: "li",
+				render: function() {
+					this.$el.text(this.model);
+				}
+			});
+
+			var ListView = Backbone.View.extend({
+
+				tagName: "ul",
+
+				render: function() {
+
+					this.collection.forEach(function(model) {
+						var itemView = new ItemView({ model: model });
+						itemView.render();
+						this.$el.append(itemView.$el);
+					});
+
+				}
+
+			});
+
+
+
+
+			"use strict";
+
+			{
+				"userPrefs": {
+					selectedState: "VA"
+				},
+				"states": "VAVirginia:"
+				"states": {
+					{ k: "VA", v: "Virginia "},
+					{ code: "VA", name: "Virginia "},
+					{ code: "VA", name: "Virginia "},
+					{ code: "VA", name: "Virginia "},
+				}
+
+			}
+
+			window.localStorage = results.data;
+
+
+			$scope.editPerson = {
+				state: window.localStorage.userPrefs.selectedState
+			};
+
+			$scope.states = window.localStorage.states;
+
+
+			$scope.people = [];
+
+			//$scope.editPerson = angular.extend({}, $scope.people[3]);
+
+			{ person: {
+				name: {
+					"firstName": "Bob",
+					"lastName": "Smith"
+
+				}
+			} }
+
+			<input ng-model="editPerson.firstName">
+
+			$scope.editPerson.firstName = results.data.person.name.firstName;
+
+			$scope.editPerson = results.data.person;
+
+			var Person = Backbone.Model.extend({
+
+
+
+				getFullName: function() {
+					return this.get("firstName") + " " + this.get("lastName");
+				}
+
+			});
+
+			// class Person extends Backbone.Model {
+			//
+			// 	constructor() {
+			// 			super();
+			// 	}
+			//
+			// 	getFullName() {
+			// 		return this.get("firstName") + " " + this.get("lastName");
+			// 	}
+			// }
+
+			console.log(typeof Person);
+
+			var person = new Person();
+
+			person.set("firstName", "Luke");
+			person.set("lastName", "Skywalker");
+			console.log(person.getFullName());
+
+			console.dir(person);
+
+		</script>
+	</body>
+
+</html>

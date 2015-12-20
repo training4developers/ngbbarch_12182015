@@ -1,0 +1,47 @@
+<script>
+
+"use strict";
+
+// iife
+(function() {
+
+	var t = "Test";
+
+})();
+
+//console.log(t);
+
+// if (true) {
+// 	let y = "Test 2";
+// }
+//
+// console.log(y);
+
+function outer() {
+
+	var someVar = {};
+
+	var inner = function() {
+
+		$.ajax({
+			success:function(results) {
+				someVar = results;
+			}
+		})
+
+		console.dir(this);
+	};
+
+	inner();
+
+}
+
+outer.call({ id :2 });
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				<ul>
+					<li ng-repeat="color in colors">{{color}}</li>
+				</ul>
+				<ul>
+					<li ng-repeat="car in cars">{{car.make}} {{car.model}}</li>
+				</ul>
+			</div>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", [])
+
+				.controller("MyCtrl", function($scope) {
+					$scope.colors = ["green","white","saffron","blue","red"];
+
+					$scope.cars = [
+						{ make: "Toyota", model: "Camry" },
+						{ make: "Honda", model: "Accord" },
+						{ make: "BMW", model: "325i" },
+					]
+				});
+
+		</script>
+
+
+	</body>
+
+</html>

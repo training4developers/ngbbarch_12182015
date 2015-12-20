@@ -1,0 +1,43 @@
+<script>
+
+var parent = {
+	amount: 2000000,
+	firstName: "Ali Salman",
+	address: {
+		state: "FL",
+		zipCode: "11111"
+	}
+};
+
+var child = Object.create(parent);
+child.firstName = "Ayaan";
+
+console.log(child.amount);
+console.dir(child);
+
+child.address.state = "CA";
+
+console.dir(child);
+
+function objectCreate(parentObj) {
+
+	var fn = function() {}
+	fn.prototype = parentObj;
+	return new fn();
+
+}
+
+var hareesh = objectCreate({
+	firstName: "Syam"
+});
+
+hareesh.firstName = "Hareesh";
+
+console.dir(hareesh);
+
+var bob = objectCreate(hareesh);
+bob.firstName = "Bob";
+
+
+
+</script>

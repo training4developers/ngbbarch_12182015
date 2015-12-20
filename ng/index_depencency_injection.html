@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="MyCtrl">
+				Counter: {{counter}}
+				<button onclick="doSomething()">Do Something</button>
+			</div>
+			<div ng-controller="MyCtrl">
+				Counter: {{counter}}
+				<button onclick="doSomething()">Do Something</button>
+			</div>
+			<div ng-controller="MyCtrl">
+				Counter: {{counter}}
+				<button onclick="doSomething()">Do Something</button>
+			</div>
+		</div>
+
+		<script>
+
+			ctrl.$inject = ["$scope", "$timeout", "$rootScope"];
+
+			function ctrl($scope, $timeout, $rootScope) {
+
+				$rootScope.$watch(function() {
+					console.log("$rootScope digested!");
+				});
+
+				$scope.$watch(function() {
+					console.log("child $scope digested!");
+				});
+
+				$scope.counter = 0;
+
+				window.doSomething = function() {
+
+					//$scope.$apply(function() {
+						$scope.counter++;
+						console.log("did it! " + $scope.counter);
+					//});
+					$scope.$digest();
+				};
+
+				setTimeout(function() {
+					$scope.counter++;
+					console.log("timeout expired...");
+					$scope.$digest();
+				}, 2000);
+			}
+
+			angular.module("MyApp", [])
+				.controller("MyCtrl", ctrl);
+
+		</script>
+
+
+	</body>
+
+</html>

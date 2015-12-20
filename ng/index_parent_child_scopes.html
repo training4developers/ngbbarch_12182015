@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+		<style>
+		.ng-scope {
+			border: 2px solid red;
+			margin:5px;
+			padding:5px;
+		}
+		</style>
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			<div ng-controller="FirstCtrl">
+				Parent Message: {{o.message}}<br>
+				Parent Message: <input ng-model="o.message">
+				<div ng-controller="SecondCtrl">
+					Child Message: {{o.message}}<br>
+					Child Message: <input ng-model="o.message">
+
+					Show Me: <input ng-model="showMe" type="checkbox">
+					<div ng-if="showMe">
+						Grandchild Message: {{o.message}}<br>
+						Grandchild Message: <input ng-model="o.message">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			var counter = 0;
+
+			angular.module("MyApp", [])
+				.controller("FirstCtrl", function($scope) {
+					$scope.message = "FirstCtrl Message";
+					$scope.o = {};
+				})
+				.controller("SecondCtrl", function($scope) {
+					console.dir($scope);
+				})
+				.run(function($rootScope) {
+					$rootScope.message = "Root Message";
+					console.dir($rootScope);
+				});
+
+		</script>
+
+
+	</body>
+
+</html>

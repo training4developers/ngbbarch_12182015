@@ -1,0 +1,65 @@
+<script>
+
+"use strict";
+
+function Parent(firstName, lastName) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+}
+
+Parent.prototype.getFullName = function() {
+	return this.firstName + " " + this.lastName;
+}
+
+function Child(firstName, lastName) {
+	this._super.call(this, firstName, lastName);
+}
+
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+Child.prototype._super = Parent;
+
+Child.prototype.getRecordLabel = function() {
+	return this.lastName + ", " + this.firstName;
+};
+
+var aChild = new Child("Jimmy", "Johns");
+console.log(aChild.getFullName());
+console.log(aChild.getRecordLabel());
+console.dir(aChild);
+
+class Parent2 {
+
+	constructor(firstName, lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	getFullName() {
+		return this.firstName + " " + this.lastName;
+	}
+
+}
+
+class Child2 extends Parent2 {
+	constructor(firstName, lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	getRecordLabel() {
+		return this.lastName + ", " + this.firstName;
+	}
+}
+
+var aChild = new Child2("Jimmy", "Johns");
+console.log(aChild.getFullName());
+console.log(aChild.getRecordLabel());
+console.dir(aChild);
+
+console.log(typeof Parent);
+console.log(typeof Parent2);
+
+
+</script>

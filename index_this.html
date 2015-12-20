@@ -1,0 +1,49 @@
+<script>
+
+"use strict";
+
+function myFunc(a, b) {
+	console.log("Boston Rules!");
+	console.dir(this);
+	console.log(a,b);
+}
+
+myFunc();
+
+window.myFunc(1,2);
+
+var o = {
+	myFunc: myFunc,
+	id: 2,
+	name: "test"
+};
+
+o.myFunc();
+
+window.myFunc.call({
+	id: 4, name: "a brand new object"
+}, 1, 2);
+
+window.myFunc.apply({
+	id: 5, name: "a brand new object"
+}, [1, 2]);
+
+var fn = window.myFunc.bind({
+	id: 6, name: "a brand new object"
+});
+
+fn();
+
+var fn = bind(fn, { id:8 });
+
+function bind(fn, context) {
+
+	return function() {
+		fn.call(context);
+	};
+
+}
+
+//console.log(myFunc === o.myFunc);
+
+</script>

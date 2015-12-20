@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Welcome to Angular.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+	</head>
+
+	<body>
+
+		<div ng-app="MyApp">
+			<header>
+				<h1>Sample Application</h1>
+			</header>
+			<div id="test" ui-view></div>
+			<footer>
+				&copy; 2015, Sapient Nitro, Inc.
+			</footer>
+		</div>
+
+		<script>
+
+			angular.module("MyApp", ["ui.router"])
+				.config(function($stateProvider, $urlRouterProvider) {
+
+					$urlRouterProvider.otherwise("/");
+
+					$stateProvider
+						.state("home", {
+							url: "/",
+							controller: function($scope, $compile, $document) {
+								$scope.message = "Welcome!";
+
+								$scope.addStuff = function() {
+
+									var linkingFn = $compile("<span>{{message | uppercase}}</span>");
+									var domElements = linkingFn($scope);
+									$document.find("#test").append(domElements);
+									console.dir($document.find("#test"));
+
+								};
+
+							},
+							templateUrl: "home"
+						})
+						.state("about", {
+							url: "/about",
+							controller: function($scope) {
+								$scope.message = "We are family...";
+							},
+							templateUrl: "about"
+						});
+
+				})
+				.run(function($templateCache) {
+
+					$templateCache.put("home", `
+
+					Home: {{message}} <a ui-sref='about'>About</a><br>
+					<input ng-model="message"><br>
+
+					<button ng-click="addStuff()">Add Stuff</button>
+
+					`);
+
+
+					$templateCache.put("about", `
+
+					About: {{message}} <a ui-sref='home'>Home</a>
+
+					`);
+
+				});
+
+		</script>
+
+
+	</body>
+
+</html>

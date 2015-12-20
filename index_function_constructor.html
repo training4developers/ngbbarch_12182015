@@ -1,0 +1,27 @@
+<script>
+
+function Parent() {
+	this.amount = 2000000;
+}
+
+Parent.prototype.constructor = Parent;
+
+function Child() {
+	this.amount = 4000000;
+}
+
+//Child.prototype = new Parent();
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+console.log(Object.getPrototypeOf(Child));
+console.log(Object.getPrototypeOf(Child) === Child.prototype);
+console.dir(Child);
+
+var dog = new Child();
+console.log(dog.amount);
+
+console.log(Object.getPrototypeOf(dog) === Child.prototype);
+console.dir(dog);
+
+</script>
